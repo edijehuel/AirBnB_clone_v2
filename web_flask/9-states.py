@@ -1,38 +1,28 @@
 #!/usr/bin/python3
-""" Starts a Flask application related to HBNB. """
+"""
+starts a Flask web application
+"""
 
-from os import getenv
 from flask import Flask, render_template
+from models import *
 from models import storage
-from models.state import State
-
 app = Flask(__name__)
+
+
+@app.route('/states', strict_slashes=False)
+@app.route('/states/<state_id>', strict_slashes=False)
+def states(state_id=None):
+    """display the states and cities listed in alphabetical order"""
+    states = storage.all("State")
+    if state_id is not None:
+        state_id = 'State.' + state_id
+    return render_template('9-states.html', states=states, state_id=state_id)
 
 
 @app.teardown_appcontext
 def teardown_db(exception):
-    """Closes the database session after each request."""
+    """closes the storage on teardown"""
     storage.close()
 
-
-@app.route('/states', strict_slashes=False)
-@app.route('/states/<id>', strict_slashes=False)
-def states(id=None):
-    """
-        Flask route at /states.
-        Displays the list of the States in the database.
-
-        Flask route at /states/<id>.
-        Displays the list of the Cities in the State with id <id>.
-    """
-    states = storage.all(State).values()
-    if id is not None:
-        for state in states:
-            if state.id == id:
-                return render_template('9-states.html', states=state)
-        return render_template('9-states.html')
-    return render_template('9-states.html', states=states, full=True)
-
-
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host='0.0.0.0', port='5000')
