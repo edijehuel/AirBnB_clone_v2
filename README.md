@@ -85,3 +85,6 @@ The length of your files will be tested using wc
 There should be one project repository per group. If you clone/fork/whatever a partner’s project repository with the same name before the second deadline, you risk a 0% score.
 
 # More Info
+![image](https://user-images.githubusercontent.com/99544506/190284818-e651b668-1343-44ad-a3c4-65acd9cbc2fc.png)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fb2zxES7ROU" title="HBNB Storage abstraction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
